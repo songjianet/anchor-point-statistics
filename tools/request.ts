@@ -5,7 +5,7 @@ const fly = require('flyio')
 const Fly = require('flyio/dist/npm/wx')
 const wechatFly = new Fly
 
-const baseUrl = 'http://192.168.1.134:9999'
+const baseUrl = 'http://192.168.1.134:9999/collection/'
 
 export function request(url: string, data: object, method: string) {
   if (!isWechat.getIsWechat()) {
