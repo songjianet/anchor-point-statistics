@@ -1,21 +1,20 @@
-import { Env } from '../env/env'
+const webRequest = require('flyio')
 
-const env: Env = new Env()
-const fly = require('flyio')
+webRequest.interceptors.request.use(
+  (config: any) => {
 
-export function WebRequest(request: object) {
-  fly.config.baseUrl = env.getBaseUrl()
+    return config
+  }, (error: any) => {
+    return Promise.reject(error)
+  }
+)
 
-  fly.interceptors.request.use((req: object) => {
-    req = {...request}
-    return req
-  })
+webRequest.interceptors.response.use(
+  (response: any) => {
+    return response.data
+  }, (error: any) => {
+    return Promise.reject(error)
+  }
+)
 
-  fly.interceptors.response.use((res: object) => {
-      // @ts-ignore
-      return res.data
-    }, () => {
-      console.log('网络请求错误！')
-    }
-  )
-}
+export default webRequest

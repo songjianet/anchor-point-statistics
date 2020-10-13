@@ -1,12 +1,16 @@
-import { WebRequest } from './webRequest'
-import { WechatRequest } from './wechatRequest'
+import webRequest from './webRequest'
+import wechatRequest from './wechatRequest'
 import { IsWechat } from './isWechat'
 const isWechat: IsWechat = new IsWechat()
 
-export function request(request: object) {
+export async function request(url: string, data: any, method: string): Promise<any> {
+    let response = null
+
     if (!isWechat.getIsWechat()) {
-      return WechatRequest(request)
+      response = await wechatRequest.request(url, data, {method})
     } else {
-      return WebRequest(request)
+      response = await webRequest.request(url, data, {method})
     }
+
+    return response
 }

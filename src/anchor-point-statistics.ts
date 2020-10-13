@@ -3,6 +3,10 @@ import { test } from '../api/test'
 export default class APS {
 
   constructor(data: object) {
-    console.log(test('kafkaPublishTest/send', 'post', data))
+    test('kafkaPublishTest/send', data, 'post').then((res: object) => {
+      console.log('apsres', res)
+    }).catch((err: object) => {
+      console.log('apserr', err)
+    })
   }
 }
