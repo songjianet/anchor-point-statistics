@@ -5,8 +5,13 @@
 </template>
 
 <script>
+import { APS } from '../../../dist/anchor-point-statistics.es5'
+
 export default {
-  name: 'App'
+  name: 'App',
+  mounted() {
+    APS({id: 0})
+  }
 }
 </script>
 
