@@ -1,16 +1,16 @@
+import webRequest from './webRequest'
+import wechatRequest from './wechatRequest'
 import { IsWechat } from './isWechat'
 const isWechat: IsWechat = new IsWechat()
 
-const fly = require('flyio')
-const Fly = require('flyio/dist/npm/wx')
-const wechatFly = new Fly
+export async function request(url: string, data: any, method: string): Promise<any> {
+    let response = null
 
-const baseUrl = 'http://192.168.1.134:9999/collection/'
+    if (!isWechat.getIsWechat()) {
+      response = await wechatRequest.request(url, data, {method})
+    } else {
+      response = await webRequest.request(url, data, {method})
+    }
 
-export function request(url: string, data: object, method: string) {
-  if (!isWechat.getIsWechat()) {
-    return wechatFly.request(baseUrl + url, data, {method})
-  } else {
-    return fly.request(baseUrl + url, data, {method})
-  }
+    return response
 }

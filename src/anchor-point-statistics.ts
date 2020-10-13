@@ -1,11 +1,12 @@
-import { request } from '../tools/request'
+import { test } from '../api/test'
 
 export default class APS {
+
   constructor(data: object) {
-    request('kafkaPublishTest/send', data, 'post').then((res: object) => {
-      console.log(res)
+    test('kafkaPublishTest/send', data, 'post').then((res: object) => {
+      console.log('apsres', res)
     }).catch((err: object) => {
-      console.log(err)
+      console.log('apserr', err)
     })
   }
 }
