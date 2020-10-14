@@ -10,7 +10,7 @@ import { APS } from '../../../dist/anchor-point-statistics.es5'
 export default {
   name: 'App',
   mounted() {
-    APS({id: 0})
+    APS({id: 0}, 'web')
   }
 }
 </script>

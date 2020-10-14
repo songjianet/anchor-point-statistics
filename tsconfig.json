@@ -18,5 +18,10 @@
   },
   "include": [
     "src"
-  ]
+  ],
+  "linterOptions": {
+    "exclude": [
+      "tools/wechatRequest.ts"
+    ]
+  }
 }

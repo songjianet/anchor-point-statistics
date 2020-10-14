@@ -1,22 +1,23 @@
 import webRequest from './webRequest'
+import uniRequest from './uniRequest'
 import wechatRequest from './wechatRequest'
-import { Env } from '../env/env'
 
-const env: Env = new Env()
+const baseUrl = 'http://192.168.1.134:9999/collection/'
 
-export async function request(url: string, data: any, method: string): Promise<any> {
-    let response = null
+export async function request(url: string, data: any, method: string, provide: string): Promise<any> {
+  let response = null
 
-    console.log('request', env.getOperatingEnvironment())
+  window.onerror = function() { return true }
 
-    // response = await webRequest.request(env.getBaseUrl() + url, data, {method})
-    // response = await wechatRequest.request(env.getBaseUrl() + url, data, {method})
+  console.log(provide)
 
-    // if (env.getOperatingEnvironment() === 'web') {
-    //   response = await webRequest.request(env.getBaseUrl() + url, data, {method})
-    // } else {
-    //   response = await wechatRequest.request(env.getBaseUrl() + url, data, {method})
-    // }
+  if (provide === 'web') {
+    response = await webRequest.request(baseUrl + url, data, {method})
+  } else if (provide === 'uni') {
+    response = await uniRequest.request(baseUrl + url, data, {method})
+  } else if (provide === 'wechat') {
+    response = await wechatRequest.request(baseUrl + url, data, {method})
+  }
 
-    return response
+  return response
 }

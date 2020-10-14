@@ -1,8 +1,7 @@
-// @ts-nocheck
-const Fly = require('../../miniprogram_npm/flyio/index')
-const wechatRequest = new Fly()
+const Fly = require('flyio/dist/npm/wx')
+const uniRequest = new Fly
 
-wechatRequest.interceptors.request.use(
+uniRequest.interceptors.request.use(
   (config: any) => {
     return config
   }, (error: any) => {
@@ -10,7 +9,7 @@ wechatRequest.interceptors.request.use(
   }
 )
 
-wechatRequest.interceptors.response.use(
+uniRequest.interceptors.response.use(
   (response: any) => {
     return response.data
   }, (error: any) => {
@@ -18,4 +17,4 @@ wechatRequest.interceptors.response.use(
   }
 )
 
-export default wechatRequest
+export default uniRequest
