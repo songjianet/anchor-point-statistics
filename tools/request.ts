@@ -1,9 +1,10 @@
 import webRequest from './webRequest'
 import wechatRequest from './wechatRequest'
+import { RequestApiInterface } from './requestApiInterface'
 import { IsWechat } from './isWechat'
 const isWechat: IsWechat = new IsWechat()
 
-export async function request(url: string, data: any, method: string): Promise<any> {
+export const request:RequestApiInterface = async (url, data, method) => {
     let response = null
 
     if (!isWechat.getIsWechat()) {
