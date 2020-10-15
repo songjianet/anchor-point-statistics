@@ -7,13 +7,13 @@ import { ReturnPurchase } from '../api/returnPurchase'
 import { Search } from '../api/search'
 
 enum Operation {
-  buy = 1,
-  browse,
-  search,
-  feedback,
-  favorites,
-  like,
-  returnPurchase
+  buy = 'BUY',
+  browse = 'BROWSE',
+  search = 'SEARCH',
+  feedback = 'FEEDBACK',
+  collect = 'COLLECT',
+  thumbUp = 'THUMB_UP',
+  returnPurchase = 'RETURN_GOODS'
 }
 
 export default class APS {
@@ -21,7 +21,7 @@ export default class APS {
   method: string = 'post'
 
   browse(data: any) {
-    data['operation'] = Operation.browse
+    data['operation_enum'] = Operation.browse
 
     Browse(this.url, data, this.method)
       .then((res: object) => {
@@ -33,7 +33,7 @@ export default class APS {
   }
 
   buy(data: any) {
-    data['operation'] = Operation.buy
+    data['operation_enum'] = Operation.buy
 
     Buy(this.url, data, this.method)
       .then((res: object) => {
@@ -45,7 +45,7 @@ export default class APS {
   }
 
   favorites(data: any) {
-    data['operation'] = Operation.favorites
+    data['operation_enum'] = Operation.collect
 
     Favorites(this.url, data, this.method)
       .then((res: object) => {
@@ -57,7 +57,7 @@ export default class APS {
   }
 
   feedback(data: any) {
-    data['operation'] = Operation.feedback
+    data['operation_enum'] = Operation.feedback
 
     Feedback(this.url, data, this.method)
       .then((res: object) => {
@@ -69,7 +69,7 @@ export default class APS {
   }
 
   like(data: any) {
-    data['operation'] = Operation.like
+    data['operation_enum'] = Operation.thumbUp
 
     Like(this.url, data, this.method)
       .then((res: object) => {
@@ -81,7 +81,7 @@ export default class APS {
   }
 
   returnPurchase(data: any) {
-    data['operation'] = Operation.returnPurchase
+    data['operation_enum'] = Operation.returnPurchase
 
     ReturnPurchase(this.url, data, this.method)
       .then((res: object) => {
@@ -93,7 +93,7 @@ export default class APS {
   }
 
   search(data: any) {
-    data['operation'] = Operation.search
+    data['operation_enum'] = Operation.search
 
     Search(this.url, data, this.method)
       .then((res: object) => {
