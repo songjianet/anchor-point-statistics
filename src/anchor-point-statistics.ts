@@ -1,11 +1,14 @@
-import { Browse } from '../api/browse'
-import { Buy } from '../api/buy'
-import { Collect } from '../api/collect'
-import { UnCollect } from '../api/unCollect'
-import { Feedback } from '../api/feedback'
-import { Like } from '../api/like'
-import { ReturnPurchase } from '../api/returnPurchase'
-import { Search } from '../api/search'
+import { Browse } from './lib/browse'
+import { Buy } from './lib/buy'
+import { Collect } from './lib/collect'
+import { UnCollect } from './lib/unCollect'
+import { Feedback } from './lib/feedback'
+import { Like } from './lib/like'
+import { ReturnPurchase } from './lib/returnPurchase'
+import { Search } from './lib/search'
+import { CloseApp } from './lib/closeApp'
+import { OpenApp } from './lib/openApp'
+import { Timestamp } from '../tools/timestamp'
 
 enum Operation {
   buy = 'BUY',
@@ -15,8 +18,12 @@ enum Operation {
   collect = 'COLLECT',
   thumbUp = 'THUMB_UP',
   returnPurchase = 'RETURN_GOODS',
-  unCollect = 'UNCOLLECT'
+  unCollect = 'UNCOLLECT',
+  openApp = 'OPEN_APP',
+  closeApp = 'CLOSE_APP'
 }
+
+const timestamp = new Timestamp()
 
 export default class APS {
   url: string = 'kafkaPublishTest/send'
@@ -48,6 +55,7 @@ export default class APS {
 
   unCollect(data: any) {
     data['operation_enum'] = Operation.unCollect
+    data['create_time'] = timestamp.getTimestamp()
 
     UnCollect(this.url, data, this.method)
       .then((res: object) => {
@@ -60,8 +68,35 @@ export default class APS {
 
   collect(data: any) {
     data['operation_enum'] = Operation.collect
+    data['create_time'] = timestamp.getTimestamp()
 
     Collect(this.url, data, this.method)
+      .then((res: object) => {
+        console.log(res)
+      })
+      .catch((err: object) => {
+        console.log(err)
+      })
+  }
+
+  openApp(data: any) {
+    data['operation_enum'] = Operation.openApp
+    data['create_time'] = timestamp.getTimestamp()
+
+    OpenApp(this.url, data, this.method)
+      .then((res: object) => {
+        console.log(res)
+      })
+      .catch((err: object) => {
+        console.log(err)
+      })
+  }
+
+  closeApp(data: any) {
+    data['operation_enum'] = Operation.closeApp
+    data['create_time'] = timestamp.getTimestamp()
+
+    CloseApp(this.url, data, this.method)
       .then((res: object) => {
         console.log(res)
       })
@@ -108,6 +143,7 @@ export default class APS {
 
   search(data: any) {
     data['operation_enum'] = Operation.search
+    data['create_time'] = timestamp.getTimestamp()
 
     Search(this.url, data, this.method)
       .then((res: object) => {

@@ -1,7 +1,7 @@
 import webRequest from './webRequest'
 import wechatRequest from './wechatRequest'
 import { RequestApiInterface } from './requestApiInterface'
-import { IsWechat } from './isWechat'
+import { IsWechat } from '../isWechat'
 const isWechat: IsWechat = new IsWechat()
 
 export const request:RequestApiInterface = async (url, data, method) => {
