@@ -4,6 +4,6 @@ import { Env } from '../env/env'
 
 const env: Env = new Env()
 
-export const Favorites:RequestApiInterface = (url, data, method) => {
+export const Collect:RequestApiInterface = (url, data, method) => {
   return request(env.getBaseUrl() + 'kafkaPublishTest/send', data, method)
 }

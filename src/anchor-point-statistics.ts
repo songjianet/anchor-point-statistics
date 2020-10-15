@@ -1,6 +1,7 @@
 import { Browse } from '../api/browse'
 import { Buy } from '../api/buy'
-import { Favorites } from '../api/favorites'
+import { Collect } from '../api/collect'
+import { UnCollect } from '../api/unCollect'
 import { Feedback } from '../api/feedback'
 import { Like } from '../api/like'
 import { ReturnPurchase } from '../api/returnPurchase'
@@ -13,7 +14,8 @@ enum Operation {
   feedback = 'FEEDBACK',
   collect = 'COLLECT',
   thumbUp = 'THUMB_UP',
-  returnPurchase = 'RETURN_GOODS'
+  returnPurchase = 'RETURN_GOODS',
+  unCollect = 'UNCOLLECT'
 }
 
 export default class APS {
@@ -44,10 +46,22 @@ export default class APS {
       })
   }
 
-  favorites(data: any) {
+  unCollect(data: any) {
+    data['operation_enum'] = Operation.unCollect
+
+    UnCollect(this.url, data, this.method)
+      .then((res: object) => {
+        console.log(res)
+      })
+      .catch((err: object) => {
+        console.log(err)
+      })
+  }
+
+  collect(data: any) {
     data['operation_enum'] = Operation.collect
 
-    Favorites(this.url, data, this.method)
+    Collect(this.url, data, this.method)
       .then((res: object) => {
         console.log(res)
       })
