@@ -31,6 +31,7 @@ export default class APS {
 
   browse(data: any) {
     data['operation_enum'] = Operation.browse
+    data['create_time'] = timestamp.getTimestamp()
 
     Browse(this.url, data, this.method)
       .then((res: object) => {
