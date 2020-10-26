@@ -1,4 +1,4 @@
-## multi-function-table
+## anchor-point-statistics
 
 > 使用`TypeScript`实现全平台用户行为统计，需要配合后端
 
