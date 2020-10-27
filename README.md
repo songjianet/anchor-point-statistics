@@ -182,7 +182,7 @@ aps.buy({
 ```ecmascript 6
 const aps = new APS
 
-aps.buy({
+aps.returnPurchase({
   user_id: '', // 用户id
   product_id: '', // 商品id
   product_name: '' // 商品名称
@@ -194,7 +194,7 @@ aps.buy({
 ```ecmascript 6
 const aps = new APS
 
-aps.buy({
+aps.returnPurchase({
   user_id: '', // 用户id
   product_name: "[{name: '商品名称', id: '商品id'}, {name: '商品名称', id: '商品id'}]"
 })
