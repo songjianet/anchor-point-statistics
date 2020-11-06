@@ -44,6 +44,7 @@ export default class APS {
 
   buy(data: any) {
     data['operation_enum'] = Operation.buy
+    data['create_time'] = timestamp.getTimestamp()
 
     Buy(this.url, data, this.method)
       .then((res: object) => {
@@ -108,6 +109,7 @@ export default class APS {
 
   feedback(data: any) {
     data['operation_enum'] = Operation.feedback
+    data['create_time'] = timestamp.getTimestamp()
 
     Feedback(this.url, data, this.method)
       .then((res: object) => {
@@ -120,6 +122,7 @@ export default class APS {
 
   like(data: any) {
     data['operation_enum'] = Operation.thumbUp
+    data['create_time'] = timestamp.getTimestamp()
 
     Like(this.url, data, this.method)
       .then((res: object) => {
@@ -132,6 +135,7 @@ export default class APS {
 
   returnPurchase(data: any) {
     data['operation_enum'] = Operation.returnPurchase
+    data['create_time'] = timestamp.getTimestamp()
 
     ReturnPurchase(this.url, data, this.method)
       .then((res: object) => {

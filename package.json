@@ -1,6 +1,6 @@
 {
   "name": "anchor-point-statistics",
-  "version": "0.6.8",
+  "version": "0.6.9",
   "description": "全平台用户行为统计，需要配合后端",
   "keywords": [
     "anchor point",
